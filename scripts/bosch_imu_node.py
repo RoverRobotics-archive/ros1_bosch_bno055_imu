@@ -184,11 +184,14 @@ if __name__ == '__main__':
     # Get parameters values
     port = rospy.get_param('~port', '/dev/ttyUSB0')
     frame_id = rospy.get_param('~frame_id', 'imu_link')
-    frequency = rospy.get_param('frequency', 100)
-    operation_mode = rospy.get_param('operation_mode', OPER_MODE_NDOF)
+    frequency = rospy.get_param('~frequency', 100)
+    operation_mode = rospy.get_param('~operation_mode', OPER_MODE_NDOF)
 
     # Open serial port
     rospy.loginfo("Opening serial port: %s...", port)
+    rospy.loginfo("Frequency: %i...", frequency)
+    rospy.loginfo("Operation Mode: %i...", operation_mode)
+
     try:
         ser = serial.Serial(port, 115200, timeout=0.2)
     except serial.serialutil.SerialException:
